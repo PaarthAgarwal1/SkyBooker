@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color:#f4f6f8;">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:20px;">
+    <tr>
+        <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+
+                <!-- Header -->
+                <tr>
+                    <td style="background:#1e3a8a; color:white; padding:20px; text-align:center;">
+                        <h2 style="margin:0;">✈️ SkyBooker</h2>
+                        <p style="margin:0;">Booking Confirmation</p>
+                    </td>
+                </tr>
+
+                <!-- Body -->
+                <tr>
+                    <td style="padding:20px;">
+
+                        <p style="font-size:16px;">Hello <b th:text="${passengerName}"></b>,</p>
+
+                        <table width="100%" style="margin-top:15px; border-collapse:collapse;">
+                            <tr>
+                                <td><b>PNR:</b></td>
+                                <td th:text="${pnr}"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Flight:</b></td>
+                                <td th:text="${flightNumber}"></td>
+                            </tr>
+                            <tr>
+                                <td><b>From:</b></td>
+                                <td th:text="${departure}"></td>
+                            </tr>
+                            <tr>
+                                <td><b>To:</b></td>
+                                <td th:text="${arrival}"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Seat:</b></td>
+                                <td th:text="${seatNumber}"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Total Fare:</b></td>
+                                <td>₹<span th:text="${totalFare}"></span></td>
+                            </tr>
+                        </table>
+
+                        <p style="margin-top:20px;">Thank you for choosing <b>SkyBooker</b> ❤️</p>
+
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td style="background:#f1f5f9; text-align:center; padding:15px; font-size:12px;">
+                        © 2026 SkyBooker | Happy Journey ✈️
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
