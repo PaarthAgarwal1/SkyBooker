@@ -1,0 +1,8 @@
+package com.skybooker.BookingService.exception;
+
+public class ResourceNotFoundException extends RuntimeException {
+
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
