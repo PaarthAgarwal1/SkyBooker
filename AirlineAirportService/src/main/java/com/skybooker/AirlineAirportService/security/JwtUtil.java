@@ -12,7 +12,7 @@ import java.security.Key;
 
 @Component
 public class JwtUtil {
-    @Value("${jwt.secret}")
+    @Value("${jwt.secret:my-super-secret-key-my-super-secret-key-12345}")
     private String SECRET;
 
     private Key getKey(){

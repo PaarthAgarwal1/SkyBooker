@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegistrationKeyValidator {
 
-    @Value("${registration.secrets.airline-staff}")
+    @Value("${registration.secrets.airline-staff:STAFF_SECRET_XYZ_2024}")
     private String staffSecret;
 
-    @Value("${registration.secrets.admin}")
+    @Value("${registration.secrets.admin:ADMIN_SECRET_ABC_9999}")
     private String adminSecret;
 
     public Role resolveRole(String registrationKey) {

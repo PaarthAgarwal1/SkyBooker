@@ -13,7 +13,7 @@ import java.io.IOException;
 @Component
 public class ServiceAuthFilter extends OncePerRequestFilter {
 
-    @Value("${service.auth.token}")
+    @Value("${service.auth.token:dev-service-token}")
     private String expectedToken;
 
     @Override

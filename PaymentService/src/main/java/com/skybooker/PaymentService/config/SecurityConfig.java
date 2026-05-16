@@ -17,7 +17,7 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
 
-    @Value("${service.auth.token}")
+    @Value("${service.auth.token:dev-service-token}")
     private String serviceToken;
 
     @Bean

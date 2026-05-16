@@ -24,7 +24,7 @@ import java.util.UUID;
 @RequestMapping("/stripe/webhook")
 public class StripeWebhookController {
 
-    @Value("${stripe.webhook-secret}")
+    @Value("${stripe.webhook-secret:}")
     private String endpointSecret;
 
     private final PaymentRepository repository;

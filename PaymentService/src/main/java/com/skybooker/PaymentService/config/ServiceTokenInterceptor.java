@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 //@Component
 //public class ServiceTokenInterceptor implements RequestInterceptor {
 //
-//    @Value("${service.auth.token}")
+//    @Value("${service.auth.token:dev-service-token}")
 //    private String serviceToken;
 //
 //    @Override

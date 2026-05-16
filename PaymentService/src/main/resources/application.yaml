@@ -1,14 +1,14 @@
 server:
-  port: 8088
+  port: ${SERVER_PORT:8088}
 
 spring:
   application:
-    name: PAYMENT-SERVICE
+    name: ${SPRING_APPLICATION_NAME:PAYMENT-SERVICE}
 
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/skyBooker}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
 
   jpa:
     hibernate:
@@ -23,15 +23,19 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_SERVER}
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka/}
 
 jwt:
-  secret: ${JWT_SECRET}
+  secret: ${JWT_SECRET:my-super-secret-key-my-super-secret-key-12345}
 
 stripe:
-  secret-key: ${STRIPE_SECRET_KEY}
-  webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+  secret-key: ${STRIPE_SECRET_KEY:}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
 
 service:
   auth:
-    token: ${SERVICE_AUTH_TOKEN}
+    token: ${SERVICE_AUTH_TOKEN:dev-service-token}
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:8088}

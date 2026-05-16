@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    discovery:
+      enabled: false
+
+eureka:
+  client:
+    enabled: false

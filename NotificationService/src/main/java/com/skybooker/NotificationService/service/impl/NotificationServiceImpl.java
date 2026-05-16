@@ -43,7 +43,7 @@ public class NotificationServiceImpl implements NotificationService {
         this.objectMapper = objectMapper;
     }
 
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.username:}")
     private String fromEmail;
 
     // ================= BOOKING =================
