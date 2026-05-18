@@ -37,6 +37,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AuthServiceImpl implements AuthService {
 
+    private static final String USER_NOT_FOUND = "User not found";
+
     private final AirlineClient airlineClient;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
@@ -145,7 +147,7 @@ public class AuthServiceImpl implements AuthService {
         User userFromDb = userRepository.findByEmail(email)
                 .orElseThrow(() -> {
                     log.warn("User not found for email in getProfile : {}", email);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         return modelMapper.map(userFromDb, UserResponse.class);
@@ -160,7 +162,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> {
                     log.warn("User not found for email in updateProfile: {}", email);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         if (request.getFullName() != null && !request.getFullName().isBlank()) {
@@ -198,7 +200,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> {
                     log.warn("User not found for email in updateProfileImage: {}", email);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         if (file.isEmpty()) {
@@ -239,7 +241,7 @@ public class AuthServiceImpl implements AuthService {
         User userFromDb = userRepository.findByEmail(email)
                 .orElseThrow(() -> {
                     log.warn("User not found for email in changePassword: {}", email);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         if (!passwordEncoder.matches(request.getOldPassword(), userFromDb.getPasswordHash())) {
@@ -263,7 +265,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> {
                     log.warn("User not found for email: {}", email);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         user.setActive(false);
@@ -294,7 +296,7 @@ public class AuthServiceImpl implements AuthService {
         User userFromDb = userRepository.findByUserId(userId)
                 .orElseThrow(() -> {
                     log.warn("User not found with ID in getUserById: {}", userId);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         return modelMapper.map(userFromDb, UserResponse.class);
@@ -308,7 +310,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> {
                     log.warn("User not found with ID in adminActivateUser: {}", userId);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         user.setActive(true);
@@ -327,7 +329,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> {
                     log.warn("User not found with ID in adminDeactivateUser: {}", userId);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         if (user.getRole() == Role.ADMIN) {
@@ -351,7 +353,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> {
                     log.warn("User not found with ID in deleteUser: {}", userId);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         userRepository.delete(user);
@@ -384,7 +386,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> {
                     log.warn("User not found with ID: {}", userId);
-                    return new UserNotFoundException("User not found");
+                    return new UserNotFoundException(USER_NOT_FOUND);
                 });
 
         if (user.getRole() != Role.AIRLINE_STAFF) {

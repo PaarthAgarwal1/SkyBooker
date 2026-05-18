@@ -24,6 +24,8 @@ import java.util.*;
 @Slf4j
 public class BookingServiceImpl implements BookingService {
 
+    private static final String BOOKING_NOT_FOUND = "Booking not found";
+
     private final BookingRepository bookingRepository;
     private final FlightClient flightClient;
     private final SeatClient seatClient;
@@ -206,7 +208,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> {
                     log.error("Booking not found in confirmBooking: {}", bookingId);
                     return new ResourceNotFoundException(
-                            "Booking not found"
+                            BOOKING_NOT_FOUND
                     );
                 });
 
@@ -316,7 +318,7 @@ public class BookingServiceImpl implements BookingService {
                         .orElseThrow(() -> {
                             log.error("Booking not found in getBookingById: {}", id);
                             return new ResourceNotFoundException(
-                                    "Booking not found"
+                                    BOOKING_NOT_FOUND
                             );
                         })
         );
@@ -332,7 +334,7 @@ public class BookingServiceImpl implements BookingService {
                         .orElseThrow(() -> {
                             log.error("Booking not found for PNR: {}", pnr);
                             return new ResourceNotFoundException(
-                                    "Booking not found"
+                                    BOOKING_NOT_FOUND
                             );
                         })
         );
@@ -346,7 +348,7 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error("Booking not found in getBookingStatus: {}", id);
-                    return new RuntimeException("Booking not found");
+                    return new RuntimeException(BOOKING_NOT_FOUND);
                 });
 
         return booking.getStatus();
@@ -384,7 +386,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> {
                     log.error("Booking not found in cancelBooking: {}", bookingId);
                     return new ResourceNotFoundException(
-                            "Booking not found"
+                            BOOKING_NOT_FOUND
                     );
                 });
 
@@ -444,7 +446,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> {
                     log.error("Booking not found in updateStatus: {}", bookingId);
                     return new ResourceNotFoundException(
-                            "Booking not found"
+                            BOOKING_NOT_FOUND
                     );
                 });
 
@@ -580,7 +582,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> {
                     log.error("Booking not found in addAddOn: {}", bookingId);
                     return new ResourceNotFoundException(
-                            "Booking not found"
+                            BOOKING_NOT_FOUND
                     );
                 });
 
@@ -588,10 +590,10 @@ public class BookingServiceImpl implements BookingService {
         booking.setLuggageKg(luggageKg);
 
         double extra =
-                (luggageKg * 50) +
+                (luggageKg * 50.0) +
                         ("VEG".equalsIgnoreCase(meal)
-                                ? 200
-                                : 0);
+                                ? 200.0
+                                : 0.0);
 
         booking.setTotalFare(
                 booking.getTotalFare().add(
@@ -722,7 +724,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> {
                     log.error("Booking not found: {}", bookingId);
                     return new ResourceNotFoundException(
-                            "Booking not found"
+                            BOOKING_NOT_FOUND
                     );
                 });
 
