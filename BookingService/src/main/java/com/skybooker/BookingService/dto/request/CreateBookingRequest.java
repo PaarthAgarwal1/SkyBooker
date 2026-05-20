@@ -19,13 +19,13 @@ public class CreateBookingRequest {
     private String contactEmail;
     private String contactPhone;
 
-    // ✅ CRITICAL: seats selected by user
+    // CRITICAL: seats selected by user
     private List<UUID> seatIds;
 
-    // ✅ CRITICAL: passenger details
+    // CRITICAL: passenger details
     private List<AddPassengerRequest> passengers;
 
-    // 🎒 Add-ons
+    // Add-ons
     private String mealPreference;
     private int luggageKg;
 }

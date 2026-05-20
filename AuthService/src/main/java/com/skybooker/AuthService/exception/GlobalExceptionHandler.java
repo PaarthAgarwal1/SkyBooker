@@ -13,7 +13,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // 🔴 Invalid Registration Key
+    // Invalid Registration Key
     @ExceptionHandler(InvalidRegistrationKeyException.class)
     public ResponseEntity<ErrorResponse> handleInvalidKey(
             InvalidRegistrationKeyException ex,
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    // 🔴 User not found
+    // User not found
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleUserNotFound(
             UserNotFoundException ex,
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
         return buildResponse(ex.getMessage(), HttpStatus.NOT_FOUND, request);
     }
 
-    // 🔴 Email already exists
+    // Email already exists
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleEmailExists(
             EmailAlreadyExistsException ex,
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
         return buildResponse(ex.getMessage(), HttpStatus.CONFLICT, request);
     }
 
-    // 🔴 Invalid credentials / password
+    // Invalid credentials / password
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<ErrorResponse> handleInvalidCredentials(
             InvalidCredentialsException ex,
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
         return buildResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED, request);
     }
 
-    // 🔴 Illegal arguments (bad input)
+    // Illegal arguments (bad input)
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgument(
             IllegalArgumentException ex,
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
         return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST, request);
     }
 
-    // 🔴 Generic fallback (VERY IMPORTANT)
+    // Generic fallback (VERY IMPORTANT)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(
             Exception ex,
@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
         return buildResponse("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-    // 🔧 Common builder method (DRY)
+    // Common builder method (DRY)
     private ResponseEntity<ErrorResponse> buildResponse(
             String message,
             HttpStatus status,

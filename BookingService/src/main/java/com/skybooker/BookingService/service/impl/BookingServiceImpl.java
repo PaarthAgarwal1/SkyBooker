@@ -412,13 +412,9 @@ public class BookingServiceImpl implements BookingService {
 
         paymentClient.refund(refundRequest);
 
-        log.info("Refund initiated for paymentId: {}",
-                booking.getPaymentId());
+        log.info("Refund initiated for paymentId: {}", booking.getPaymentId());
 
-        flightClient.incrementSeats(
-                booking.getFlightId(),
-                booking.getSeatIds().size()
-        );
+        flightClient.incrementSeats(booking.getFlightId(), booking.getSeatIds().size());
 
         booking.setStatus(BookingStatus.CANCELLED);
 
